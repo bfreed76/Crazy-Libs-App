@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-function StoryContainer() {
+const StoryContainer = () => {
     const [story, setStory] = useState("Story1");
 
     useEffect(() => {
@@ -13,3 +13,5 @@ function StoryContainer() {
         </div>
     )
 }
+
+export default StoryContainer;
