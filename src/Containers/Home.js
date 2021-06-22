@@ -2,25 +2,17 @@ import React from 'react'
 import froggy from '../froggy.jpg';
 
 
-export const Home = () => {
+const Home = () => {
+
+    const handleClick = () => {window.location.assign("http://localhost:3000/stories")} //? Simulate page nav
 
     return (
         <div>
         <header className="App-header">
         <h1 className="Top-header">Crazy Libs App</h1>
         <img src={froggy} alt="froggy" className="Top-image"/>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          >
-
-          Learn React
-        </a>
+        <br></br>
+        <button onClick={handleClick}>BEGIN</button>
       </header>
         </div>
     )

@@ -30,6 +30,10 @@
   color: #61dafb;
 }
 
+hr {
+  width: 40%
+}
+
 .Top-header {
   font-size: 350%
 }
@@ -42,5 +46,3 @@
     transform: rotate(360deg);
   }
 }
-
-
