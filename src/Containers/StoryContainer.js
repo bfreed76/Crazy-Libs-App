@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import Story from '../Components/Story'
 
 const StoryContainer = () => {
-    const [story, setStory] = useState([]);
+    const [story, setStory] = useState([])
     const [hasError, setHasError] = useState(false)
 
     useEffect(() => newStory(), [])
@@ -13,29 +14,10 @@ const StoryContainer = () => {
         .catch(err => setHasError(true), [])
     }
 
-    const displayStory = () => {
-        console.log("DISPLAYSTORY")
-        let blanksCounter = 0
-        story.value.map((line) => {
-            <div>
-            <p>{line}</p>
-            {/* <p>{story.blanks.blanksCounter}</p> */}
-            </div>
-        })
-    }
-
     return (
         <div>
-            <h1>Crazy Libs!</h1>
-            <p>Fill in the blanks then push the save button below to share your story with others!</p>
-            <hr></hr>
-
-            {displayStory()}
-
-            <h3>{story.title}</h3>
-            {/* <p>{story.value}</p> */}
+            <Story storyText={story} />
             <button onClick={newStory}> NEW STORY </button>
-            {/* {if hasError ? <div>Error Occured</div> : console.log("fetch worked!") } */}
         </div>
     )
 }
