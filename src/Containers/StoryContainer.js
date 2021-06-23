@@ -14,10 +14,20 @@ const StoryContainer = () => {
         .catch(err => setHasError(true), [])
     }
 
+    const blanksObj = () => {
+        console.log(story.blanks)
+    }
+
+    const finishStory = () => {
+        console.log("zip story!")
+    }
+
     return (
         <div>
-            <Story storyText={story} />
+            {blanksObj}
             <button onClick={newStory}> NEW STORY </button>
+            <Story storyText={story} />
+            <button onClick={finishStory}>FINISHED</button>
         </div>
     )
 }

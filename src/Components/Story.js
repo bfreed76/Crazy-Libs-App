@@ -1,40 +1,38 @@
 import React, { useState, useEffect } from 'react'
+import Inputs from './Inputs'
 
 const Story = (props) => {
     const {title, blanks, value} = props.storyText
-    const [display, setDisplay] = useState([]);
+    const [input, setInput] = useState([]);
+    const [state, setState] = useState({});
+    let displayBlanks //set to state
 
-    let mapStory
-    let counter = 0
-    if(value) {
-        mapStory = value.map((line) => {
-            // console.log(line, "mapping")
-            let blanksWord = blanks[counter]
-            let zipper =
-            <div>
-                <p>{line}
-                <form>
-                    <input type="text" placeholder={blanksWord} name={counter}/>
-                </form>
-                </p>
-            </div>
-            counter += 1
-            // blanks ? setDisplay(display => [...display, zipper]) : console.log("blanks False")
-            return zipper
-        })
+    const inputToState = (e) => {
+        e.preventDefault()
+        console.log(e.target.value, e.target.name)
     }
 
+    if(blanks) { //change to function return blanks.map, const displayBlanks
+        displayBlanks = blanks.map((blank, id) => {
+        return <Inputs blank={blank} key={id} inputToState={inputToState} id={id}/>
+            }
+        )
+    }
 
+    
+        
     return (
         <div>
-            <h1>Crazy Libs!</h1>
+            <h1>Crazy Libs</h1>
             <p>Fill in the blanks then push the save button below to share your story with others!</p>
             <hr></hr>
             <h3>{title}</h3>
-            {mapStory}
+            {/* <p>{value}</p> */}
+            {/* <p>{blanks}</p> */}
+            {displayBlanks}
             <p>
-                {display}
-                </p>
+               "This is what in state:" {input}
+            </p>
 
         </div>
     )
