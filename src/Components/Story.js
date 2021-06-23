@@ -24,7 +24,7 @@ const Story = (props) => {
 
     const finishStory = () => {
         setFinished(true)
-        //ZIPPPPPPPER HERE
+
     }
 
     const newStoryClick = () => {

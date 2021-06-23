@@ -14,19 +14,9 @@ const StoryContainer = () => {
         .catch(err => setHasError(true), [])
     }
 
-    const blanksObj = () => {
-        console.log(story.blanks)
-    }
-
-    // const finishStory = () => {
-    //     console.log("zip story!")
-    // }
-
     return (
         <div>
-            {blanksObj}
             <Story storyText={story} newStory={newStory}/>
-
         </div>
     )
 }
