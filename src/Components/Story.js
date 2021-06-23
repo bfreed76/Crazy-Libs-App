@@ -3,37 +3,47 @@ import Inputs from './Inputs'
 
 const Story = (props) => {
     const {title, blanks, value} = props.storyText
-    const [input, setInput] = useState([]);
-    const [state, setState] = useState({});
-    let displayBlanks //set to state
+    const [finished, setFinished] = useState(false);
+    const [input, setInput] = useState({});
+
 
     const inputToState = (e) => {
         e.preventDefault()
-        console.log(e.target.value, e.target.name)
+        const {name, value} = e.target
+        setInput(prevState => {return {...prevState, [name]: value}})  
     }
 
-    if(blanks) { //change to function return blanks.map, const displayBlanks
-        displayBlanks = blanks.map((blank, id) => {
-        return <Inputs blank={blank} key={id} inputToState={inputToState} id={id}/>
-            }
-        )
+    const displayBlanks = () => {
+        if(blanks) {
+            return blanks.map((blank, id) => {
+                return <Inputs blank={blank} key={id} inputToState={inputToState} id={id}/>
+                }
+            )
+        } 
     }
 
-    
-        
+    const finishStory = () => {
+        setFinished(true)
+        //ZIPPPPPPPER HERE
+    }
+
+    const newStoryClick = () => {
+        setFinished(false)
+        return props.newStory()
+    }
+
+
     return (
         <div>
-            <h1>Crazy Libs</h1>
-            <p>Fill in the blanks then push the save button below to share your story with others!</p>
+            <h1>Loco Libs</h1>
+            <p>Fill in the blanks then click the finished button below to share your story with others!</p>
             <hr></hr>
+            <button onClick={newStoryClick}> NEW STORY </button>
             <h3>{title}</h3>
-            {/* <p>{value}</p> */}
-            {/* <p>{blanks}</p> */}
-            {displayBlanks}
-            <p>
-               "This is what in state:" {input}
-            </p>
-
+            {!finished ? displayBlanks() : console.log("finished")}
+            <br></br>
+            <button onClick={finishStory}>FINISHED</button>
+            <br></br>
         </div>
     )
 }

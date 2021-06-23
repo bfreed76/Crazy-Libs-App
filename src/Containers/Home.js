@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div>
         <header className="App-header">
-        <h1 className="Top-header">Crazy Libs App</h1>
+        <h1 className="Top-header">Loco Libs App</h1>
         <img src={froggy} alt="froggy" className="Top-image"/>
         <br></br>
         <button onClick={handleClick}>BEGIN</button>

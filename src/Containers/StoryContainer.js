@@ -18,16 +18,15 @@ const StoryContainer = () => {
         console.log(story.blanks)
     }
 
-    const finishStory = () => {
-        console.log("zip story!")
-    }
+    // const finishStory = () => {
+    //     console.log("zip story!")
+    // }
 
     return (
         <div>
             {blanksObj}
-            <button onClick={newStory}> NEW STORY </button>
-            <Story storyText={story} />
-            <button onClick={finishStory}>FINISHED</button>
+            <Story storyText={story} newStory={newStory}/>
+
         </div>
     )
 }
