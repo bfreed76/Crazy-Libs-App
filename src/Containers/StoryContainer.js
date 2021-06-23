@@ -3,9 +3,11 @@ import Inputs from '../Components/Inputs'
 import Story from '../Components/Story'
 
 const StoryContainer = (props) => {
+    const [finished, setFinished] = useState(false)
+    const [user, setUser] = useState("")
+    const [input, setInput] = useState({})
+    const [story, setStory] = useState("")
     const {title, blanks, value} = props.storyText
-    const [finished, setFinished] = useState(false);
-    const [input, setInput] = useState({});
 
 
     const inputToState = (e) => {
@@ -23,22 +25,29 @@ const StoryContainer = (props) => {
         } 
     }
 
-    const renderStory = () => {
+    const zipStory = () => {
         setFinished(true)
         let counter = 0
-         let mapping = value.map((line) => {
-             return line + input[counter]
-             counter += 1
-         })
-        // let finishedStory = mapping.join(" ")
-        console.log("Render Story Finished")
-        return <Story finishedStory={mapping} />
-        
+        value.pop()
+        let mapping = value.map((line) => {
+            let concat
+            concat = input[counter] ? concat = line + input[counter] : line
+            counter += 1
+            return concat
+        })
+        let finishedStory = mapping.join("")
+        setStory(finishedStory)
     }
 
     const newStoryClick = () => {
         setFinished(false)
         return props.newStory()
+    }
+
+    const saveStory = (e) => {
+        console.log("SAVE STORY")
+        // setUser(e)
+        debugger
     }
 
 
@@ -49,9 +58,10 @@ const StoryContainer = (props) => {
             <hr></hr>
             <button onClick={newStoryClick}> NEW STORY </button>
             <h3>{title}</h3>
-            {!finished ? displayBlanks() : console.log("finished")}
-            <br></br>
-            <button onClick={renderStory}>FINISHED</button>
+            {!finished ? [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] : 
+                [<Story finishedStory={story}/>, 
+                <input type="text" placeholder="Your Name"></input>, 
+                <button onClick={saveStory}>SAVE STORY</button>]}
             <br></br>
         </div>
     )
