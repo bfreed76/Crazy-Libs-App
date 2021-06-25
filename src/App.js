@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from 'react';
 // import ScrollToTop from './Containers/ScrollToTop';
-import StoryContainer from './Containers/StoryContainer';
+import FetchContainer from './Containers/FetchContainer';
 import './App.css';
 import Home from './Containers/Home';
 
@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path='/stories' render={(routeProps) => <StoryContainer {...routeProps}/>} />
+        <Route exact path='/stories' render={(routeProps) => <FetchContainer {...routeProps}/>} />
       </Switch>
     </div>
       </Router>
