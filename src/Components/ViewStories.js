@@ -2,12 +2,15 @@ import React from 'react';
 
 const ViewStories = (props) => {    
 
-    const {id, title, content} = props.stories
-
     return(
         <div>
             <h1>VIEWSTORIES COMPONENT</h1>
-            <p> {id} {title} {content} </p>
+            {props.storyList ? props.storyList.map((story) => {
+                return (<div> <h3> {story.id } {story.title} </h3> 
+                    <p>{story.content}</p> </div>)
+                    }
+                ) : null
+            }
             <br></br>
         </div>
     )

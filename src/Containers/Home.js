@@ -4,7 +4,7 @@ import froggy from '../froggy.jpg';
 
 const Home = () => {
 
-    const handleClick = () => {window.location.assign("http://localhost:3000/stories")} //? SIMULATES PAGE NAV
+    const handleClick = () => {window.location.assign("http://localhost:3000/your_story")} //? SIMULATES PAGE NAV
 
     return (
         <div>

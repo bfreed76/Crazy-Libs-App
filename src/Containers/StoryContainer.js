@@ -79,10 +79,10 @@ const StoryContainer = (props) => {
     return (
         <div>
             <Header newStoryClick={newStoryClick}  getStories={props.getStories} title={title}/>
-
             {!finished ?                
                 [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] :
                 <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
+            <ViewStories stories={props.stories} />
         </div>
     )
 }

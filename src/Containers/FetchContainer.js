@@ -19,18 +19,16 @@ const FetchContainer = () => {
     const getStories = () => {                      //? FETCHES AND MAPS SAVED STORIES
         fetch("http://localhost:9393/stories") 
         .then(res => res.json())
-        .then(res => setStories(res))
+        // .then(res => setStories(res))
+        // .then(res => props.storyLister(res))
         .catch(err => setHasError(true), []) 
         console.log("viewstories worked")
-        return stories.map((story, id) => {
-            return <ViewStories id={id} title={story.title} content={story.content} />
-            }
-        )
+        {window.location.assign("http://localhost:3000/stories")}
     }
 
     return (
         <div>
-            <StoryContainer storyText={story} newStory={newStory} getStories={getStories} />
+            <StoryContainer storyText={story} newStory={newStory} getStories={getStories} stories={stories}/>
         </div>
     )
 }

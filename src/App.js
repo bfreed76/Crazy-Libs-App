@@ -1,23 +1,28 @@
-import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import React from 'react';
-// import ScrollToTop from './Containers/ScrollToTop';
-import FetchContainer from './Containers/FetchContainer';
-import './App.css';
-import Home from './Containers/Home';
+import {BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import React, { useState } from 'react'
+import ViewStories from './Components/ViewStories'
+import FetchContainer from './Containers/FetchContainer'
+import './App.css'
+import Home from './Containers/Home'
+
 
 function App() {
+  const [storyList, setStoryList] = useState()
+  
+  const storyLister = (storydata) => {
+    setStoryList = setStoryList({storydata})
+  }
+
   return (
-    // <React.StrictMode> 
     <Router>
-      {/* <ScrollToTop /> //? Auto scroll on new page */}
     <div className="App">
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path='/stories' render={(routeProps) => <FetchContainer {...routeProps}/>} />
+        <Route exact path='/your_story' render={(routeProps) => <FetchContainer {...routeProps} storyLister={storyLister}/>} />
+        <Route exact path='/stories' render={(routeProps) => <ViewStories {...routeProps} storyList={storyList}/>} /> //!sadfasd
       </Switch>
     </div>
       </Router>
-    // </React.StrictMode>
   );
 }
 
