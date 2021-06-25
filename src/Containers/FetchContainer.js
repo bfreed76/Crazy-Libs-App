@@ -14,9 +14,17 @@ const FetchContainer = () => {
         .catch(err => setHasError(true), [])
     }
 
+    const getStory = () => {
+        fetch("http://localhost:9393/stories") 
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => setHasError(true), [])
+    }
+
     return (
         <div>
             <StoryContainer storyText={story} newStory={newStory}/>
+            {getStory()}
         </div>
     )
 }

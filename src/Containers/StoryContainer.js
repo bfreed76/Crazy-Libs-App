@@ -4,7 +4,7 @@ import Story from '../Components/Story'
 
 const StoryContainer = (props) => {
     const [finished, setFinished] = useState(false)
-    const [user, setUser] = useState("")
+    const [user, setUser] = useState()
     const [input, setInput] = useState({})
     const [story, setStory] = useState("")
     const {title, blanks, value} = props.storyText
@@ -46,8 +46,13 @@ const StoryContainer = (props) => {
 
     const saveStory = (e) => {
         console.log("SAVE STORY")
-        // setUser(e)
-        debugger
+        // send user to DB. prevent from refreshing to new story
+    }
+
+    const usernameToState = (e) => {
+        e.preventDefault()
+        const {value} = e.target
+        setUser(prev => {return {...prev, value}}) 
     }
 
 
@@ -58,10 +63,7 @@ const StoryContainer = (props) => {
             <hr></hr>
             <button onClick={newStoryClick}> NEW STORY </button>
             <h3>{title}</h3>
-            {!finished ? [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] : 
-                [<Story finishedStory={story}/>, 
-                <input type="text" placeholder="Your Name"></input>, 
-                <button onClick={saveStory}>SAVE STORY</button>]}
+            {!finished ? [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] : <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
             <br></br>
         </div>
     )
