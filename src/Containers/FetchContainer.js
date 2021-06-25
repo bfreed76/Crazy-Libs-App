@@ -19,7 +19,7 @@ const FetchContainer = () => {
         fetch("http://localhost:9393/stories") 
         .then(res => res.json())
         .then(res => setStories(res))
-        console.log(res)
+        console.log(stories)
         .catch(err => setHasError(true), [])
     }
 

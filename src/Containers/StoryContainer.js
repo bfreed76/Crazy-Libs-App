@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Inputs from '../Components/Inputs'
 import Story from '../Components/Story'
+import Header from '../Components/Header'
 import ViewStories from '../Components/ViewStories'
 
 const StoryContainer = (props) => {
@@ -11,13 +12,13 @@ const StoryContainer = (props) => {
     const {title, blanks, value} = props.storyText
 
 
-    const inputToState = (e) => {
+    const inputToState = (e) => {               //? SETS USER INPUT TO STATE
         e.preventDefault()
         const {name, value} = e.target
         setInput(prevState => {return {...prevState, [name]: value}})  
     }
 
-    const displayBlanks = () => {
+    const displayBlanks = () => {               //? DISPLAYS USER INPUTS
         if(blanks) {
             return blanks.map((blank, id) => {
                 return <Inputs blank={blank} key={id} inputToState={inputToState} id={id}/>
@@ -26,7 +27,7 @@ const StoryContainer = (props) => {
         } 
     }
 
-    const zipStory = () => {
+    const zipStory = () => {                    //? ZIPS USER INPUT AND STORIES
         setFinished(true)
         let counter = 0
         value.pop()
@@ -40,18 +41,18 @@ const StoryContainer = (props) => {
         setStory(finishedStory)
     }
     
-    const newStoryClick = () => {
+    const newStoryClick = () => {                 //? FETCHES NEW STORY
         setFinished(false)
         return props.newStory()
     }
     
-    const usernameToState = (e) => {
+    const usernameToState = (e) => {               //? SETS USERNAME TO STATE
         e.preventDefault()
         const {value} = e.target
         setUser(prev => {return {...prev, value}}) 
     }
 
-    const saveStory = (e) => {      //? POSTS USERNAME AND STORY
+    const saveStory = (e) => {                      //? POSTS USERNAME AND ZIPPED STORY
         e.preventDefault()
         const requestOptions = {
             method: 'POST',
@@ -76,21 +77,24 @@ const StoryContainer = (props) => {
 
     }
 
-    const viewStories = () => {
-        console.log("viewstories working")
-        return <ViewStories stories={props.stories} />
+    const viewStories = () => {                     //? DISPLAYS ALL STORIES (ignore me!!)
+        let testArr = ["Yesterday, my friend and I went to the park. On our way to the park, we saw big balloons tied to a . Once we got to the park, the sky turned . It started to and . My friend and I all the way home. Tomorrow we will try to go to the park again and hopefully it doesnt !", 
+        "History is because we learn about and that happened long ago. I can't believe people used to dress in clothing and kids played with and instead of video games. Also, before cars were invented, people actually rode ! People read instead of computers and tablets, and sent messages via that took days to arrive. I wonder how kids will view my life in year(s); maybe they will ride flying cars to school and play with and !",
+    "A in was arrested this morning after he was caught in front of . had a history of , but no one-not even his -ever imagined he'd with a stuck in his . After drinking a , cops followed him to a where he reportedly in the fry machine. Later, a woman from was charged with a similar crime. But rather than with a , she with a dog. Either way, we imagine that after witnessing him with a there are probably a whole lot of that are going to need some therapy!"]
+        return testArr.map((storyUser, id) => {
+            // return <ViewStories story={storyUser} key={id} />
+            console.log(id, storyUser)
+            }
+        )
     }
     
 
     return (
         <div>
-            <h1>Loco Libs</h1>
-            <p>Fill in the blanks then click the finished button below to share your story with others!</p>
-            <hr></hr>
-            <button onClick={newStoryClick}> NEW STORY </button> <button onClick={viewStories}>VIEW STORIES</button> 
-            <h3>{title}</h3>
-            {!finished ? [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] : <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
-            <br></br>
+            <Header newStoryClick={newStoryClick}  viewStories={viewStories} title={title}/>
+            {!finished ? 
+                [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] :
+                <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
         </div>
     )
 }

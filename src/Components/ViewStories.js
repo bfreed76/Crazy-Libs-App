@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ViewStories = (props) => {
+const ViewStories = (props) => {    
 
-    return(
+return(
         <div>
             <h1>VIEWSTORIES COMPONENT</h1>
-            {props.stories.map((story, id) => <p>{id, story}</p>)}                
+            <p>{props.id}{props.story}</p>                        
             <br></br>
         </div>
     )
