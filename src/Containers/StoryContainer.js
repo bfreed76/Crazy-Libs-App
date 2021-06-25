@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Inputs from '../Components/Inputs'
 import Story from '../Components/Story'
+import ViewStories from '../Components/ViewStories'
 
 const StoryContainer = (props) => {
     const [finished, setFinished] = useState(false)
@@ -38,30 +39,55 @@ const StoryContainer = (props) => {
         let finishedStory = mapping.join("")
         setStory(finishedStory)
     }
-
+    
     const newStoryClick = () => {
         setFinished(false)
         return props.newStory()
     }
-
-    const saveStory = (e) => {
-        console.log("SAVE STORY")
-        // send user to DB. prevent from refreshing to new story
-    }
-
+    
     const usernameToState = (e) => {
         e.preventDefault()
         const {value} = e.target
         setUser(prev => {return {...prev, value}}) 
     }
 
+    const saveStory = (e) => {      //? POSTS USERNAME AND STORY
+        e.preventDefault()
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                title: title,
+                content: story
+            })};
+        fetch("http://localhost:9393/users", requestOptions)
+            .then(res => res.json())
+            .then(data => console.log(data))
+
+        const requestOptionsB = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                name: user,
+            })};
+        fetch("http://localhost:9393/stories", requestOptionsB)
+            .then(res => res.json())
+            .then(data => console.log(data))
+
+    }
+
+    const viewStories = () => {
+        console.log("viewstories working")
+        return <ViewStories stories={props.stories} />
+    }
+    
 
     return (
         <div>
             <h1>Loco Libs</h1>
             <p>Fill in the blanks then click the finished button below to share your story with others!</p>
             <hr></hr>
-            <button onClick={newStoryClick}> NEW STORY </button>
+            <button onClick={newStoryClick}> NEW STORY </button> <button onClick={viewStories}>VIEW STORIES</button> 
             <h3>{title}</h3>
             {!finished ? [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] : <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
             <br></br>
