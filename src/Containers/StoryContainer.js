@@ -6,7 +6,7 @@ import ViewStories from '../Components/ViewStories'
 
 const StoryContainer = (props) => {
     const [finished, setFinished] = useState(false)
-    const [user, setUser] = useState()
+    const [user, setUser] = useState("")
     const [input, setInput] = useState({})
     const [story, setStory] = useState("")
     const {title, blanks, value} = props.storyText
@@ -48,30 +48,30 @@ const StoryContainer = (props) => {
     
     const usernameToState = (e) => {               //? SETS USERNAME TO STATE
         e.preventDefault()
-        const {value} = e.target
-        setUser(prev => {return {...prev, value}}) 
+        let userName = e.target.value
+        setUser(prev => {return {...prev, userName}}) 
     }
 
     const saveStory = (e) => {                      //? POSTS USERNAME AND ZIPPED STORY
         e.preventDefault()
-        const requestOptions = {
+        const requestOptionsStory = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 title: title,
                 content: story
             })};
-        fetch("http://localhost:9393/users", requestOptions)
-            .then(res => res.json())
-            .then(data => console.log(data))
-
-        const requestOptionsB = {
+        const requestOptionsUser = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
-                name: user,
+                name: user.value,  //pass in string of marge
             })};
-        fetch("http://localhost:9393/stories", requestOptionsB)
+        fetch("http://localhost:9393/users", requestOptionsUser)
+            .then(res => res.json())
+            .then(data => console.log(data))
+
+        fetch("http://localhost:9393/stories", requestOptionsStory)
             .then(res => res.json())
             .then(data => console.log(data))
 
