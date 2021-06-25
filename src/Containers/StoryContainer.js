@@ -65,7 +65,7 @@ const StoryContainer = (props) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
-                name: user.value,  //pass in string of marge
+                name: user.userName,  //pass in string of marge
             })};
         fetch("http://localhost:9393/users", requestOptionsUser)
             .then(res => res.json())
