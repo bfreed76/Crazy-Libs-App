@@ -2,10 +2,12 @@ import React from 'react';
 
 const ViewStories = (props) => {    
 
-return(
+    const {id, title, content} = props.stories
+
+    return(
         <div>
             <h1>VIEWSTORIES COMPONENT</h1>
-            <p>{props.id}{props.story}</p>                        
+            <p> {id} {title} {content} </p>
             <br></br>
         </div>
     )
