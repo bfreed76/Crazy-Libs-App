@@ -10,7 +10,7 @@ const Header = (props) => {
             <hr></hr>
 
             <button onClick={props.newStoryClick}> NEW </button> 
-            <button onClick={props.getStories}>VIEW STORIES</button> 
+            <button onClick={() => window.location.assign("http://localhost:3000/stories")}>VIEW STORIES</button> 
             <h3>{props.title}</h3>
         </div>
     )

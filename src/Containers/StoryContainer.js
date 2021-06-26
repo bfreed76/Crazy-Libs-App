@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Inputs from '../Components/Inputs'
 import Story from '../Components/Story'
 import Header from '../Components/Header'
-import ViewStories from '../Components/ViewStories'
+
 
 const StoryContainer = (props) => {
     const [finished, setFinished] = useState(false)
@@ -10,7 +10,6 @@ const StoryContainer = (props) => {
     const [input, setInput] = useState({})
     const [story, setStory] = useState("")
     const {title, blanks, value} = props.storyText
-
 
     const inputToState = (e) => {               //? SETS USER INPUT TO STATE
         e.preventDefault()
@@ -58,14 +57,21 @@ const StoryContainer = (props) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
+                author: user.userName,
                 title: title,
-                content: story
+                content: story,
             })};
         const requestOptionsUser = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
-                name: user.userName,  
+                name: user.userName  
+            })};
+        const requestOptionsWord = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                word: input 
             })};
         fetch("http://localhost:9393/users", requestOptionsUser)
             .then(res => res.json())
@@ -74,15 +80,19 @@ const StoryContainer = (props) => {
         fetch("http://localhost:9393/stories", requestOptionsStory)
             .then(res => res.json())
             .then(data => console.log(data))
+
+        fetch("http://localhost:9393/words", requestOptionsWord)
+            .then(res => res.json())
+            .then(data => console.log(data))
+        // alert("SAVED")
     }
 
     return (
         <div>
-            <Header newStoryClick={newStoryClick}  getStories={props.getStories} title={title}/>
+            <Header newStoryClick={newStoryClick} title={title}/>
             {!finished ?                
                 [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] :
                 <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
-            <ViewStories stories={props.stories} />
         </div>
     )
 }
