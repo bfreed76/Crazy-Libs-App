@@ -35,7 +35,7 @@ const ViewStories = (props) => {
     return(
         <div>
             <h1>All Stories</h1>
-                <button onClick={() => window.location.assign("http://localhost:3000/your_story")}>NEW</button>
+                <button onClick={() => window.location.assign("http://localhost:3000/your_story")}>NEW STORY</button>
                 <button onClick={deleteLast}>DELETE LAST</button>
                 {render()}
             <br></br>
