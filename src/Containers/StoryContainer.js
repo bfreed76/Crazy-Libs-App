@@ -13,36 +13,39 @@ const StoryContainer = (props) => {
     const [story, setStory] = useState("")
     const {title, blanks, value} = props.storyText
 
-    const inputToState = (e) => {               //? SETS USER INPUT TO STATE
+    const inputToState = (e) => {               //? SETS USER INPUTS TO STATE
         e.preventDefault()
         const {name, value} = e.target
-        setInput(prevState => {return {...prevState, [name]: value}})  
+        setInput(prevState => {return {...prevState, [name]: value}
+            }
+        )  
     }
 
-    const displayBlanks = () => {               //? DISPLAYS USER INPUTS
+    const displayBlanks = () => {               //? DISPLAYS USER INPUT FORMS
         if(blanks) {
             return blanks.map((blank, id) => {
-                return <Inputs blank={blank} key={id} inputToState={inputToState} id={id}/>
+                return <Inputs id={id} blank={blank} key={id} inputToState={inputToState} />
                 }
             )
         } 
     }
 
-    const zipStory = () => {                    //? ZIPS USER INPUT AND STORIES
+    const zipStory = () => {                    //? ZIPS UP USER INPUT AND STORIES, SETS TO STATE
         setFinished(true)
         let counter = 0
         value.pop()
-        let mapping = value.map((line) => {
+        let storyZipper = value.map((line) => {
             let concat
             concat = input[counter] ? concat = line + input[counter] : line
             counter += 1
             return concat
-        })
-        let finishedStory = mapping.join("")
+                }
+            )
+        let finishedStory = storyZipper.join("")
         setStory(finishedStory)
     }
     
-    const newStoryClick = () => {                 //? FETCHES NEW STORY
+    const newStoryClick = () => {                 //? FETCHES NEW STORY AND BLANKS
         setFinished(false)
         setSaved(false)
         return props.newStory()
@@ -71,34 +74,21 @@ const StoryContainer = (props) => {
                 content: story,
                 user_id: userID
             })};
-        const requestOptionsWord = {    //! save words via map function tied to button
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                word: input 
-            })};
         fetch("http://localhost:9393/users", requestOptionsUser)
             .then(res => res.json())
             .then(data => {setUserID(data.id); console.log(data)})
             .then(fetch("http://localhost:9393/stories", requestOptionsStory)
                         .then(res => res.json())
                         .then(data => console.log(data)))
-
-        // fetch("http://localhost:9393/words", requestOptionsWord)
-        //     .then(res => res.json())
-        //     .then(data => console.log(data))
         setSaved(true)
     }
 
     return (
         <div>
             <Header newStoryClick={newStoryClick} title={title}/>
-            {!finished ?                
-                [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] :
-                <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
-            {saved ?
-                <h2>STORY SAVED</h2> :
-                null}
+            {!finished ? [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] :
+                    <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
+            {saved ? <h2>STORY SAVED</h2> : null}
         </div>
     )
 }

@@ -51,6 +51,11 @@ hr {
   width: 40%
 }
 
+p {
+  margin: auto;
+  width: 75%;
+}
+
 .Top-header {
   font-size: 350%
 }

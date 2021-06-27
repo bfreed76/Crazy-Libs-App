@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Story = (props) => {
+
+const Story = (props) => {              //? RENDERS ZIPPED STORY TO USER AND USERNAME FORM
 
     return(
         <div>
             <p>{props.finishedStory}</p>
+            <br></br>
             <form onChange={props.usernameToState}>
                 <input type="text" placeholder="Enter First Name"/> 
                 <br></br><br></br>
@@ -12,7 +14,6 @@ const Story = (props) => {
             </form>
         </div>
     )
-
 }
 
 export default Story
