@@ -18,6 +18,7 @@ const ExtFetchContainer = (props) => {
     return (
         <div>
             <StoryContainer storyText={story} newStory={newStory} />
+            {hasError && <p>Oops, our bad. Something went froggy. Try again later.</p>}
         </div>
     )
 }

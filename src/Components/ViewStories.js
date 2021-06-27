@@ -39,6 +39,7 @@ const ViewStories = (props) => {
                 <button onClick={deleteLast}>DELETE LAST</button>
                 {render()}
             <br></br>
+            {hasError && <p>Oops, our bad. Something went froggy.</p>}
         </div>
     )
 }

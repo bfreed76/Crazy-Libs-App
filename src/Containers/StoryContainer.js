@@ -11,6 +11,7 @@ const StoryContainer = (props) => {
     const [userID, setUserID] = useState()
     const [input, setInput] = useState({})
     const [story, setStory] = useState("")
+    const [hasError, setHasError] = useState(false)
     const {title, blanks, value} = props.storyText
 
     const inputToState = (e) => {               //? SETS USER INPUTS TO STATE
@@ -34,7 +35,7 @@ const StoryContainer = (props) => {
         setFinished(true)
         let counter = 0
         value.pop()
-        let storyZipper = value.map((line) => {
+        let storyZipper = value.map((line, id) => { 
             let concat
             concat = input[counter] ? concat = line + input[counter] : line
             counter += 1
@@ -77,9 +78,11 @@ const StoryContainer = (props) => {
         fetch("http://localhost:9393/users", requestOptionsUser)
             .then(res => res.json())
             .then(data => {setUserID(data.id); console.log(data)})
+            .catch(err => setHasError(true), [])
             .then(fetch("http://localhost:9393/stories", requestOptionsStory)
                         .then(res => res.json())
                         .then(data => console.log(data)))
+                        .catch(err => setHasError(true), [])
         setSaved(true)
     }
 
@@ -89,6 +92,7 @@ const StoryContainer = (props) => {
             {!finished ? [displayBlanks(), <br></br>, <button onClick={zipStory}>FINISHED</button>] :
                     <Story finishedStory={story} usernameToState={usernameToState} saveStory={saveStory}/>}
             {saved ? <h2>STORY SAVED</h2> : null}
+            {hasError && <p>Oops, our bad. Something went froggy. Try again later.</p>}
         </div>
     )
 }

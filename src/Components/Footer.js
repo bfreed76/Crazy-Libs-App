@@ -5,10 +5,11 @@ const Footer = () => {
     
     return(
         <div>
-            <br></br><br></br>
-            <small>Brinton Foy Reed, Software Engineering Student, Flatiron School.</small> 
             <br></br>
-            <small>Powered by MadlibzAPI: https://madlibz.herokuapp.com/api#api*/</small>
+            <p className="footer">Brinton Foy Reed, Software Engineering Program, Flatiron School.</p> 
+            <p className="footer">Powered by 
+                <a href="https://madlibz.herokuapp.com/api#api*/"> MadlibzAPI.</a>
+                </p>
         </div>
     )
 }
