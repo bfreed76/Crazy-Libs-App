@@ -2,7 +2,7 @@
 Create hilarious stories by adding your own words into a randomly selected story!
  
 <p align="center">
-<img src="./client/public/llscreen1.jpeg" alt="llscreen1">
+<img src="./public/llscreen1.jpeg" alt="llscreen1">
 </p>
 
 ## To start Loco Libs locally
@@ -20,11 +20,11 @@ This app uses React, HTML and CSS on the frontend and Ruby on Rails with SQlite3
 [![React](https://img.shields.io/badge/-React-black?style=flat-square&logo=react)](https://reactjs.org/) [![ReactRouter](https://img.shields.io/badge/ReactRouter-4F545E?style=flat&logo=reactrouter)](https://reactrouter.com/) [![SQLite3](https://img.shields.io/badge/-SQLite3-99bdee?style=flat-square&logo=sqlite)](https://www.sqlite.org/index.html) [![Ruby](https://img.shields.io/badge/-Ruby-ff6666?style=flat-square&logo=ruby)](https://https://ruby-lang.org/) [![Rails](https://img.shields.io/badge/Rails-red?style=flat&logo=ruby-on-rails)](https://rubyonrails.org/) 
 
 <p align="center">
-<img src="./client/public/llscreen2.jpeg" alt="llscreen2">
+<img src="./public/llscreen2.jpeg" alt="llscreen2">
 </p>
 
 <p align="center">
-<img src="./client/public/llscreen3.jpeg" alt="llscreen3">
+<img src="./public/llscreen3.jpeg" alt="llscreen3">
 </p>
 
 <!-- CONTACT -->
@@ -36,7 +36,7 @@ Project Link: [PC Gamefinder](https://pc-gamefinder.herokuapp.com/)
 <a href="https://github.com/bfreed76"><strong>See more apps on my profile page »</strong></a>
 
 <p align="center">
-<img src="./client/public/llscreen4.jpeg" alt="llscreen4">
+<img src="./public/llscreen4.jpeg" alt="llscreen4">
 </p>
 
 ## Requirements
