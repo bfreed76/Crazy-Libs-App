@@ -13,7 +13,7 @@ From this folder , enter 'rails s' from the terminal window to start the server.
 
 This app uses React, HTML and CSS on the frontend and Ruby on Rails with SQlite3 on the backend. 
 
-# Please note that this repository contains the frontend for Loco Libs. [The backend can be found here.](https://github.com/bfreed76/Loco-Libs-Backend)
+Please note that this repository contains the frontend for Loco Libs. [The backend can be found here.](https://github.com/bfreed76/Loco-Libs-Backend)
 
 ### Built Using
 
