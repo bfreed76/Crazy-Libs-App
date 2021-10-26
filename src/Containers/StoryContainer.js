@@ -68,13 +68,11 @@ const StoryContainer = (props) => {
   const saveStory = (e) => {
     //? POSTS USERNAME AND ZIPPED STORY
     e.preventDefault();
-    const requestOptionsUser = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: user.userName,
-      }),
-    };
+    // const requestOptionsUser = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({}),
+    // };
     const requestOptionsStory = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -85,18 +83,18 @@ const StoryContainer = (props) => {
         user_id: userID,
       }),
     };
-    fetch(baseURL + "users", requestOptionsUser)
-      .then((res) => res.json())
-      .then((data) => {
-        setUserID(data.id);
-        console.log(data);
-      })
-      .catch((err) => setHasError(true), [])
-      .then(
-        fetch(baseURL + "stories", requestOptionsStory)
+    // fetch(baseURL + "users", requestOptionsUser)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setUserID(data.id);
+    //     console.log(data);
+    //   })
+    //   .catch((err) => setHasError(true), [])
+    //   .then(
+        fetch("http://localhost:3000/stories", requestOptionsStory)
           .then((res) => res.json())
           .then((data) => console.log(data))
-      )
+    //   )
       .catch((err) => setHasError(true), []);
     setSaved(true);
   };
