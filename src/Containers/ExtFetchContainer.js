@@ -9,7 +9,7 @@ const ExtFetchContainer = (props) => {
 
   const newStory = () => {
     //? FETCHES NEW STORY AND BLANKS FROM API
-    fetch("http://madlibz.herokuapp.com/api/random?minlength=5&maxlength=25")
+    fetch("https://madlibz.herokuapp.com/api/random?minlength=5&maxlength=25")
       .then((res) => res.json())
       .then((res) => setStory(res))
       .catch((err) => setHasError(true), []);
