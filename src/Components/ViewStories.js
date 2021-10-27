@@ -25,9 +25,9 @@ const ViewStories = (props) => {
     fetch(baseURL + "stories/" + storyID, { method: "DELETE" })
       .then((res) => res.json())
       .then((res) => console.log(res));
-    setTimeout(() => {
-      window.location.reload();
-    }, 350);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 350);
   };
 
   const renderStories = () => {
