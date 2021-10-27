@@ -19,9 +19,10 @@ const ViewStories = (props) => {
       .catch((err) => setHasError(true), []);
   };
 
-  const deleteLast = () => {
+  const deleteStory = (storyID) => {
     //? DELETES LAST STORY SAVED AND RELOADS PAGE
-    fetch(baseURL + "stories", { method: "DELETE" })
+    console.log(baseURL + "stories/" + storyID)
+    fetch(baseURL + "stories/" + storyID, { method: "DELETE" })
       .then((res) => res.json())
       .then((res) => console.log(res));
     setTimeout(() => {
@@ -31,6 +32,7 @@ const ViewStories = (props) => {
 
   const render = () => {
     //? RENDERS SAVED STORIES
+    if (storyList) { 
     return storyList.map((story) => {
       return (
         <div>
@@ -41,9 +43,12 @@ const ViewStories = (props) => {
           </h3>{" "}
           <p>by {story.author}</p>
           <p>{story.content}</p>{" "}
+          <button onClick={() => deleteStory(story.id)}>Delete</button>
         </div>
       );
-    });
+    })} else {
+      console.log(storyList)
+    };
   };
 
   return (
@@ -55,7 +60,7 @@ const ViewStories = (props) => {
         }>
         NEW STORY
       </button>
-      <button onClick={deleteLast}>DELETE LAST</button>
+      <button onClick={deleteStory}>DELETE LAST</button>
       {render()}
       <br></br>
       {hasError && <p>Oops, our bad. Something went froggy.</p>}
