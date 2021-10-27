@@ -20,8 +20,8 @@ const ViewStories = (props) => {
   };
 
   const deleteStory = (storyID) => {
-    //? DELETES LAST STORY SAVED AND RELOADS PAGE
-    console.log(baseURL + "stories/" + storyID)
+    //? DELETES STORY AND RELOADS PAGE
+    console.log(baseURL + "stories/" + storyID);
     fetch(baseURL + "stories/" + storyID, { method: "DELETE" })
       .then((res) => res.json())
       .then((res) => console.log(res));
@@ -30,38 +30,32 @@ const ViewStories = (props) => {
     }, 350);
   };
 
-  const render = () => {
+  const renderStories = () => {
     //? RENDERS SAVED STORIES
-    if (storyList) { 
-    return storyList.map((story) => {
-      return (
-        <div>
-          {" "}
-          <h3>
+    if (storyList) {
+      return storyList.map((story) => {
+        return (
+          <div>
             {" "}
-            Story {story.id}. {story.title}
-          </h3>{" "}
-          <p>by {story.author}</p>
-          <p>{story.content}</p>{" "}
-          <button onClick={() => deleteStory(story.id)}>Delete</button>
-        </div>
-      );
-    })} else {
-      console.log(storyList)
-    };
+            <h3>
+              {" "}
+              Story {story.id}. {story.title}
+            </h3>{" "}
+            <p>by {story.author}</p>
+            <p>{story.content}</p> <button onClick={() => deleteStory(story.id)}>Delete</button>
+          </div>
+        );
+      });
+    } else {
+      console.log(storyList);
+    }
   };
 
   return (
     <div>
       <h1>All Stories</h1>
-      <button onClick={() => 
-        // window.location.assign("http://localhost:3000/your_story")
-        history.push("/your_story")
-        }>
-        NEW STORY
-      </button>
-      <button onClick={deleteStory}>DELETE LAST</button>
-      {render()}
+      <button onClick={() => history.push("/your_story")}>NEW STORY</button>
+      {renderStories()}
       <br></br>
       {hasError && <p>Oops, our bad. Something went froggy.</p>}
     </div>
