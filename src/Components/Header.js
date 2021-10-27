@@ -3,9 +3,6 @@ import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
   const history = useHistory();
-  const baseURL = "https://loco-libs-rails-backend.herokuapp.com/"; // Production API
-  // const baseURL = "http://localhost:9393/" // SQLite3 Development API
-  // const baseURL = "http://localhost:3000/"; // PSQL Development API
 
   return (
     <div>
@@ -15,7 +12,6 @@ const Header = (props) => {
       <button onClick={props.newStoryClick}> NEW STORY</button>
       <button
         onClick={() =>
-          // window.location.assign("http://localhost:3000/stories")
           history.push("/stories")
         }>
         VIEW STORIES

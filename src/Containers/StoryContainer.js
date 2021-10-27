@@ -7,7 +7,7 @@ const StoryContainer = (props) => {
   const [finished, setFinished] = useState(false);
   const [saved, setSaved] = useState(false);
   const [user, setUser] = useState("");
-  const [userID, setUserID] = useState();
+  const [userID] = useState();
   const [input, setInput] = useState({});
   const [story, setStory] = useState("");
   const [hasError, setHasError] = useState(false);
