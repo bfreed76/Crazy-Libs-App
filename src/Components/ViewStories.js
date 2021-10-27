@@ -5,9 +5,9 @@ const ViewStories = (props) => {
   const [storyList, setStoryList] = useState(["empty"]);
   const [hasError, setHasError] = useState(false);
   const history = useHistory();
-  // const baseURL = "https://loco-libs-rails-backend.herokuapp.com/"  // Production API
+  const baseURL = "https://loco-libs-rails-backend.herokuapp.com/"; // Production API
   // const baseURL = "http://localhost:9393/" // SQLite3 Development API
-  const baseURL = "http://localhost:3000/"; // PSQL Development API
+  // const baseURL = "http://localhost:3000/"; // PSQL Development API
 
   useEffect(() => getStories(), []);
 

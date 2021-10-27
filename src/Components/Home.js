@@ -8,7 +8,6 @@ const Home = () => {
   const history = useHistory();
 
   const handleClick = () => {
-    // window.location.assign("http://localhost:3000/your_story");
     history.push("/your_story");
   }; //? SIMULATES PAGE NAV
 

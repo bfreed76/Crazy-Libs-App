@@ -12,9 +12,9 @@ const StoryContainer = (props) => {
   const [story, setStory] = useState("");
   const [hasError, setHasError] = useState(false);
   const { title, blanks, value } = props.storyText;
-  // const baseURL = "https://loco-libs-rails-backend.herokuapp.com/"  // Production API
+  const baseURL = "https://loco-libs-rails-backend.herokuapp.com/"; // Production API
   // const baseURL = "http://localhost:9393/" // SQLite3 Development API
-  const baseURL = "http://localhost:3000/"; // PSQL Development API
+  // const baseURL = "http://localhost:3000/"; // PSQL Development API
 
   const inputToState = (e) => {
     //? SETS USER INPUTS (VOCAB WORDS) TO STATE
@@ -68,11 +68,6 @@ const StoryContainer = (props) => {
   const saveStory = (e) => {
     //? POSTS USERNAME AND ZIPPED STORY
     e.preventDefault();
-    // const requestOptionsUser = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({}),
-    // };
     const requestOptionsStory = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -83,18 +78,9 @@ const StoryContainer = (props) => {
         user_id: userID,
       }),
     };
-    // fetch(baseURL + "users", requestOptionsUser)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setUserID(data.id);
-    //     console.log(data);
-    //   })
-    //   .catch((err) => setHasError(true), [])
-    //   .then(
-        fetch("http://localhost:3000/stories", requestOptionsStory)
-          .then((res) => res.json())
-          .then((data) => console.log(data))
-    //   )
+    fetch(baseURL + "stories", requestOptionsStory)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
       .catch((err) => setHasError(true), []);
     setSaved(true);
   };
