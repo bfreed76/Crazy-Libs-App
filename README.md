@@ -16,6 +16,7 @@ This app uses React, HTML and CSS on the frontend and Ruby on Rails with SQlite3
 Please note that this repository contains the frontend for Loco Libs. [The backend can be found here.](https://github.com/bfreed76/Loco-Libs-Backend)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9e3da5e1-3734-48af-8ff2-82694d90864a/deploy-status)](https://app.netlify.com/sites/loco-libs/deploys)
+*Works in production, frontend deployment WIP. 10/21
 
 ### Built Using
 
